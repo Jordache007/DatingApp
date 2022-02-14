@@ -9,7 +9,7 @@ namespace API.Extentions
     {
         public static int CalculateAge(this DateTime dob)
         {
-            //cals age based on dob
+            //calls age based on dob
             var today = DateTime.Today;
             var age = today.Year - dob.Year;
             if(dob.Date > today.AddYears(-age)) age--;

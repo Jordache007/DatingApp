@@ -8,33 +8,43 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using API.Interfaces;
+using API.DTOs;
+using AutoMapper;
 
 namespace API.Controllers
 {
+    [Authorize]
    
     public class UsersController : BaseApiController //inheriting from baseapi
     {
-        private readonly DataContext _context;
         
-        public UsersController(DataContext context)
+        private readonly IUserRepository _userRepository;
+
+        private readonly IMapper _mapper;
+        
+        public UsersController(IUserRepository userRepository, IMapper mapper)
         {
-            _context = context;
+           _userRepository = userRepository;
             // access to db
         }
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+    
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-           return await _context.Users.ToListAsync();
+            var users =  await _userRepository.GetMembersAsync();
+           
+           return Ok(users);
         }
         // asynchronous code helps makes your data scalable 
 
         //specifies user id eg 3
-        [Authorize]
-         [HttpGet("{id}")]
-        public async Task<ActionResult<AppUser>> GetUser(int id)
+       
+         [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
-            return await _context.Users.FindAsync(id);
+            return await _userRepository.GetMemberAsync(username);
+            
 
            
         }
