@@ -49,24 +49,24 @@ namespace API.Controllers
         }
         //update user
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
-        {
-            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var user = await _userRepository.GetUserByUsernameAsync(username);
+        // [HttpPut]
+        // public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        // {
+        //     var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //     var user = await _userRepository.GetUserByUsernameAsync(username);
 
             
 
             
 
-            _mapper.Map(memberUpdateDto, user);
-            _userRepository.Update(user);
+        //     _mapper.Map(memberUpdateDto, user);
+        //     _userRepository.Update(user);
 
-            if (await _userRepository.SaveAllAsync()) return NoContent();
+        //     if (await _userRepository.SaveAllAsync()) return NoContent();
 
-            return BadRequest("Failed to update user");
+        //     return BadRequest("Failed to update user");
 
-        }
+        // }
 
 
 
