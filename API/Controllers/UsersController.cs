@@ -12,6 +12,7 @@ using API.Interfaces;
 using API.DTOs;
 using AutoMapper;
 using System.Security.Claims;
+using API.Extentions;
 
 namespace API.Controllers
 {
@@ -23,9 +24,11 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
 
         private readonly IMapper _mapper;
+        private readonly IPhotoService _photoService;
         
-        public UsersController(IUserRepository userRepository, IMapper mapper)
+        public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService)
         {
+            _photoService = photoService;
            _userRepository = userRepository;
             // access to db
         }
@@ -47,7 +50,7 @@ namespace API.Controllers
             return await _userRepository.GetMemberAsync(username);
             
         }
-        //update user
+        //update user does not work
 
         // [HttpPut]
         // public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
@@ -67,6 +70,37 @@ namespace API.Controllers
         //     return BadRequest("Failed to update user");
 
         // }
+
+        [HttpPost("add-photo")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
+        {
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var result = await _photoService.AddPhotoAsync(file);
+
+            if (result.Error != null) return BadRequest(result.Error.Message);
+
+            var photo = new Photo
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            if (user.Photos.Count == 0)
+            {
+                photo.IsMain = true;
+            }
+
+            user.Photos.Add(photo);
+
+            if(await _userRepository.SaveAllAsync())
+            
+                return _mapper.Map<PhotoDto>(photo);
+
+                return BadRequest("Problem adding photo");
+            
+
+        }
 
 
 
