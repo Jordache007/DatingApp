@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using API.Data;
 using API.Extentions;
+using API.Helpers;
 using API.Interfaces;
 using API.Middleware;
 using API.services;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,21 +32,30 @@ namespace API
         {
             _config = config;
         }
-        
 
-     
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+            // var mapperConfig = new MapperConfiguration(mc =>
+            // {
+            //        mc.AddProfile(new AutoMapperProfiles());
+            //    });
+
+            // // AutoMapperProfiles
+            // IMapper mapper = mapperConfig.CreateMapper();
+            // services.AddSingleton(mapper);
+
+           // services.AddMvc();
             services.AddApplicationServices(_config);
             services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
             });//security to get over to diff local host
-          services.AddIdentityServices(_config);
+            services.AddIdentityServices(_config);
 
 
 

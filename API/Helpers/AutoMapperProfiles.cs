@@ -15,6 +15,9 @@ namespace API.Helpers
 
         public AutoMapperProfiles()
         {
+            CreateMap<RegisterDto, AppUser>();
+            CreateMap<Photo, PhotoDto>();
+            CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<AppUser, MemberDto>()
             //when we map an indivdual property we give it the photoUrl,
             // we tell it where we want to map from and the src of where we mapping from, well get the first/default photo and get the url from that

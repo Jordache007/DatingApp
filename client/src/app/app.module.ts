@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'ng2-file-upload';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -20,7 +21,7 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ListComponent } from './list/list.component';
 import { ToastrModule } from 'ngx-toastr';
-import { SharedModule } from './_modules/shared.module';
+
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -29,6 +30,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { NgxSpinnerModule} from 'ngx-spinner';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { SharedModule } from './_modules/shared.module';
 
 
 @NgModule({
@@ -46,6 +49,7 @@ import { NgxSpinnerModule} from 'ngx-spinner';
     ServerErrorComponent,
     MemberCardComponent,
     MemberEditComponent,
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +58,8 @@ import { NgxSpinnerModule} from 'ngx-spinner';
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-
     NgxSpinnerModule,
+    FileUploadModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
