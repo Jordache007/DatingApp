@@ -1,3 +1,4 @@
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
@@ -9,8 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { FormsModule } from '@angular/forms';
-import {  BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -20,7 +20,6 @@ import { MessagesComponent } from './messages/messages.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ListComponent } from './list/list.component';
-import { ToastrModule } from 'ngx-toastr';
 
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
@@ -32,7 +31,12 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { NgxSpinnerModule} from 'ngx-spinner';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { SharedModule } from './_modules/shared.module';
-
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import {
+  BsDatepickerModule,
+  BsDatepickerConfig,
+} from 'ngx-bootstrap/datepicker';
+import { DateInputComponent } from './_forms/date-input/date-input.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,8 @@ import { SharedModule } from './_modules/shared.module';
     MemberCardComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    TextInputComponent,
+    DateInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,9 @@ import { SharedModule } from './_modules/shared.module';
     FormsModule,
     SharedModule,
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

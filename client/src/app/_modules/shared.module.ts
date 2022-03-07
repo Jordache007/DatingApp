@@ -19,6 +19,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
+
+    
     
   ],
   exports: [
