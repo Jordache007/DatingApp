@@ -30,9 +30,6 @@ member: Member;
         preview: false
       }
     ]
-
-   
-    
   }
 
   getImages(): NgxGalleryImage[] {

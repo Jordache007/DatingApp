@@ -1,4 +1,5 @@
 
+
 import { FileUploadModule } from 'ng2-file-upload';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
@@ -65,6 +66,7 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     FormsModule,
     SharedModule,
     NgxSpinnerModule,
+    
     FileUploadModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),

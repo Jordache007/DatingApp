@@ -4,6 +4,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { PaginationModule } from 'ngx-bootstrap/pagination'; 
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -19,8 +22,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
-
-    
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TimeagoModule.forRoot(),
     
   ],
   exports: [
@@ -28,6 +32,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
+    PaginationModule,
+    ButtonsModule,
+    TimeagoModule,
     
   ],
 })
