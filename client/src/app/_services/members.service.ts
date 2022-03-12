@@ -27,7 +27,7 @@ export class MembersService {
     { 
       return of(response);
     }
- //changes
+
 
 
 
@@ -98,5 +98,15 @@ export class MembersService {
   deletePhoto(photoId: number)
   {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+  }
+
+  addLike(username: string)
+  {
+    return this.http.post(this.baseUrl + 'likes/' + username, {})
+  }
+
+  getLikes(predicate: string)
+  {
+    return this.http.get<Partial<Member[]>>(this.baseUrl + 'likes?predicate=' + predicate);
   }
 }
