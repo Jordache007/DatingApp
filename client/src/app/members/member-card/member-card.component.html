@@ -8,7 +8,9 @@
                 <i class="fa fa-user"></i></li>
             <li class="list-inline-item"><button class="btn btn-primary" (click)="addLike(member)"></button>
                 <i class="fa fa-heart"></i></li>
-            <li class="list-inline-item"><button class="btn btn-primary"></button>
+            <li class="list-inline-item"><button class="btn btn-primary"
+                routerLink="/members/{{member.username}}"
+                [queryParams]='{tab: 3}'></button>
                 <i class="fa fa-envelope"></i></li>
         </ul>
     </div>
